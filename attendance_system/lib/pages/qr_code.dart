@@ -44,6 +44,8 @@ import 'package:flutter/material.dart';
 
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import 'home_page.dart';
+
 
 
 class QrPage extends StatelessWidget {
@@ -93,6 +95,23 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Scan Code',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        leading: IconButton(
+          icon: Image.asset("images/back.png"),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          },
+        ),
+      ),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -107,7 +126,12 @@ class _QRViewExampleState extends State<QRViewExample> {
                     Text(
                         'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
                   else
-                    const Text('Scan a code'),
+                    // const Text('Scan Code',
+                    // style: TextStyle(
+                    //   color: Colors.black,
+                    //   fontSize: 20.0,
+                    //   fontWeight: FontWeight.bold,
+                    // ),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,25 +150,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                               },
                             )),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.flipCamera();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getCameraInfo(),
-                              builder: (context, snapshot) {
-                                if (snapshot.data != null) {
-                                  return Text(
-                                      'Camera facing ${describeEnum(snapshot.data)}');
-                                } else {
-                                  return const Text('loading');
-                                }
-                              },
-                            )),
-                      )
+
                     ],
                   ),
                   Row(
@@ -157,8 +163,8 @@ class _QRViewExampleState extends State<QRViewExample> {
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
-                          child: const Text('pause',
-                              style: TextStyle(fontSize: 20)),
+                          child: const Text('Pause',
+                              style: TextStyle(fontSize: 15)),
                         ),
                       ),
                       Container(
@@ -167,8 +173,8 @@ class _QRViewExampleState extends State<QRViewExample> {
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },
-                          child: const Text('resume',
-                              style: TextStyle(fontSize: 20)),
+                          child: const Text('Resume',
+                              style: TextStyle(fontSize: 15)),
                         ),
                       )
                     ],
@@ -186,7 +192,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
         MediaQuery.of(context).size.height < 400)
-        ? 150.0
+        ? 250.0
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
@@ -194,9 +200,9 @@ class _QRViewExampleState extends State<QRViewExample> {
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
+          borderColor: Colors.white,
           borderRadius: 10,
-          borderLength: 30,
+          borderLength: 40,
           borderWidth: 10,
           cutOutSize: scanArea),
       onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
@@ -218,7 +224,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
+        const SnackBar(content: Text('No Permission')),
       );
     }
   }
