@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Column(
-        children: [SizedBox(height: 30,),
+        children: [const SizedBox(height: 30,),
           Row(
             children: [
               Expanded(

@@ -38,6 +38,7 @@ dependencies:
 
 #  mobile_scanner: ^2.1.0
   qr_code_scanner: any
+  hexcolor: ^3.0.1
 
 #  mobile_scanner: ^2.1.0
 #  geolocator: ^9.0.2
