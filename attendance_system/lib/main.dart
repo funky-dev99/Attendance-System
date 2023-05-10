@@ -1,4 +1,5 @@
 import 'package:attendance_system/pages/home_page.dart';
+import 'package:attendance_system/pages/qr_code.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home:HomePage(),
+      home:QrPage(),
     );
   }
 }

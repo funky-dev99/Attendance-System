@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.attendance_system">
+    <uses-permission android:name="android.permission.CAMERA"/>
    <application
         android:label="attendance_system"
         android:name="${applicationName}"
