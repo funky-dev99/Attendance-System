@@ -3,7 +3,7 @@ import 'package:attendance_system/pages/qr_code.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: MaterialButton(
                   onPressed: (){Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => QrPage()));},
+                      context, MaterialPageRoute(builder: (context) => QRViewExample()));},
                   child: Image.asset('images/qr.png'),
                 ),
               ),
