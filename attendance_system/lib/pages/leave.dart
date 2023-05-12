@@ -41,20 +41,28 @@ class Leave extends StatelessWidget {
       ),
       body: Column(
         children:  [
-          Container(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: const Text("New Leave",
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w500,
-              ),),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: const Text("New Leave",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                  ),),
+              ),
+            ],
           ),
           const SizedBox(height: 20,),
 
-          const Text("Leave Type",
-            style: TextStyle(
-              fontSize: 15.0,
-            ),),
+          Row(
+            children: [
+              const Text("Leave Type",
+                style: TextStyle(
+                  fontSize: 15.0,
+                ),),
+            ],
+          ),
           const SizedBox(
             height: 5.0
           ),
@@ -152,10 +160,14 @@ class Leave extends StatelessWidget {
             ),
           ),
 
-          const Text("Day Part",
-            style: TextStyle(
-              fontSize: 15.0,
-            ),),
+          Row(
+            children: [
+              const Text("Day Part",
+                style: TextStyle(
+                  fontSize: 15.0,
+                ),),
+            ],
+          ),
           const SizedBox(
               height: 5.0
           ),
