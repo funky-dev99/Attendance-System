@@ -56,8 +56,9 @@ class Leave extends StatelessWidget {
           const SizedBox(height: 20,),
 
           Row(
-            children: [
-              const Text("Leave Type",
+            children: const [
+              Padding(padding: EdgeInsets.all(8.0)),
+              Text("Leave Type",
                 style: TextStyle(
                   fontSize: 15.0,
                 ),),
@@ -161,8 +162,9 @@ class Leave extends StatelessWidget {
           ),
 
           Row(
-            children: [
-              const Text("Day Part",
+            children: const [
+              Padding(padding: EdgeInsets.all(8.0)),
+               Text("Day Part",
                 style: TextStyle(
                   fontSize: 15.0,
                 ),),
