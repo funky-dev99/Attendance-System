@@ -41,6 +41,7 @@ dependencies:
   hexcolor: ^3.0.1
   dropdown_button2: ^2.1.2
   date_time_picker: ^2.1.0
+  flutter_localization: ^0.1.10
 
 #  mobile_scanner: ^2.1.0
 #  geolocator: ^9.0.2

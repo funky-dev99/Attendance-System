@@ -1,41 +1,3 @@
-// import 'package:flutter/material.dart';
-//
-// class QrPage extends StatelessWidget {
-//   const QrPage({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black54,
-//       body: Container(
-//         width: double.infinity,
-//         padding: EdgeInsets.all(16),
-//         child: Column(
-//           children: [
-//             Expanded(child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Text('Scan Your QR Code',
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 30.0,
-//                   fontWeight: FontWeight.bold,
-//                 ),)
-//               ],
-//             )),
-//             Expanded(
-//                 flex: 4,
-//                 child: Container(color: Colors.teal,)),
-//             Expanded(child: Container(color: Colors.blue,)),
-//           ],
-//         ),
-//       ),
-//
-//     );
-//   }
-// }
-
-
 import 'dart:developer';
 import 'dart:io';
 
@@ -97,7 +59,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Scan Code',
           style: TextStyle(
             color: Colors.black,
@@ -108,7 +70,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           icon: Image.asset("images/back.png"),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
+                context, MaterialPageRoute(builder: (context) => const HomePage()));
           },
         ),
       ),
