@@ -1,37 +1,29 @@
-import 'package:date_time_picker/date_time_picker.dart';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'package:intl/intl.dart';
 
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatefulWidget {
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-//
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     Localization(
-//       delegates: [
-//         GlobalMaterialLocalizations.delegate,
-//         GlobalWidgetsLocalizations.delegate,
-//       ],
-//       child: MaterialApp(
-//         // Your app's properties and configuration,
-//       ),
-//     );
-//
-//   }
-//
-//   void Localization({List<LocalizationsDelegate<Object>> delegates, MaterialApp child}) {}
-// }
-class Leave extends StatelessWidget {
+class Leave extends StatefulWidget {
   Leave({Key key}) : super(key: key);
-  void setState(Null Function() param0) {}
+
+  @override
+  State<Leave> createState() => _LeaveState();
+}
+
+class _LeaveState extends State<Leave> {
+  TextEditingController dateController = TextEditingController();
+
+  @override
+  void initState() {
+    dateController.text = ""; //set the initial value of text field
+    super.initState();
+  }
+
+  void LeavesetState(Null Function() param0) {}
 
   String selectedValue1;
+
   List<String> items = [
     'Vacation',
     'Sick',
@@ -40,7 +32,9 @@ class Leave extends StatelessWidget {
 
 
   ];
+
   String selectedValue;
+
   List<String> day_part = [
     'Full Day',
     'Half Day',
@@ -307,24 +301,38 @@ class Leave extends StatelessWidget {
           const SizedBox(
               height: 5.0
           ),
-          DateTimePicker(
-            type: DateTimePickerType.date,
-            //dateMask: 'yyyy/MM/dd',
-            controller: _controller3,
-            //initialValue: _initialValue,
 
-            firstDate: DateTime(2000),
-            lastDate: DateTime(2100),
-            icon: Icon(Icons.event),
-            dateLabelText: 'Date',
-            locale: Locale('pt', 'BR'),
-            onChanged: (val) => setState(() => _valueChanged3 = val),
-            validator: (val) {
-              String _valueToValidate3;
-              setState(() => _valueToValidate3 = val ?? '');
-              return null;
+          TextField(
+
+
+            controller: dateController, //editing controller of this TextField
+            decoration: const InputDecoration(
+
+                icon: Icon(Icons.calendar_today), //icon of text field
+                labelText: "Enter Date" //label text of field
+            ),
+            readOnly: true,  // when true user cannot edit text
+            onTap: () async {
+              DateTime pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(), //get today's date
+                  firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                  lastDate: DateTime(2101)
+              );
+
+              if(pickedDate != null ){
+                print(pickedDate);  //get the picked date in the format => 2022-07-04 00:00:00.000
+                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                print(formattedDate); //formatted date output using intl package =>  2022-07-04
+                //You can format date as per your need
+
+                setState(() {
+                  dateController.text = formattedDate; //set foratted date to TextField value.
+                });
+              }else{
+                print("Date is not selected");
+              }
             },
-            onSaved: (val) => setState(() => _valueSaved3 = val ?? ''),
           ),
 
 
@@ -344,24 +352,6 @@ class Leave extends StatelessWidget {
           const SizedBox(
               height: 5.0
           ),
-          DateTimePicker(
-            type: DateTimePickerType.date,
-            //dateMask: 'yyyy/MM/dd',
-            controller: _controller3,
-            //initialValue: _initialValue,
-            firstDate: DateTime(2000),
-            lastDate: DateTime(2100),
-            icon: const Icon(Icons.event),
-            dateLabelText: 'Date',
-            locale: Locale('pt', 'BR'),
-            onChanged: (val) => setState(() => _valueChanged3 = val),
-            validator: (val) {
-              String _valueToValidate3;
-              setState(() => _valueToValidate3 = val ?? '');
-              return null;
-            },
-            onSaved: (val) => setState(() => _valueSaved3 = val ?? ''),
-          ),
 
         ],
       ),
@@ -369,5 +359,4 @@ class Leave extends StatelessWidget {
     );
 
   }
-
 }

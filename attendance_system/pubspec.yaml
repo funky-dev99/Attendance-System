@@ -38,7 +38,7 @@ dependencies:
 
 #  mobile_scanner: ^2.1.0
   qr_code_scanner: any
-  hexcolor: ^3.0.1
+
   dropdown_button2: ^2.1.2
   date_time_picker: ^2.1.0
   flutter_localization: ^0.1.10
