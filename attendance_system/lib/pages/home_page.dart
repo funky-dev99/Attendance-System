@@ -2,6 +2,9 @@ import 'package:attendance_system/pages/leave.dart';
 import 'package:attendance_system/pages/qr_code.dart';
 import 'package:flutter/material.dart';
 
+import '../Methods/methods.dart';
+import 'login.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -21,6 +24,16 @@ class HomePage extends StatelessWidget {
             //     context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout,color: Colors.black,), // Use the logout icon from the Icons class
+            tooltip: 'Logout',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+          ),
+        ],
+
         elevation: 0.0,
       ),
       body: Column(
@@ -43,6 +56,66 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+
+          SizedBox(height: getSizeBoxHeight(context),),
+
+          Row(
+            children: [
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    // Navigator.push(
+                    //     context, MaterialPageRoute(builder: (context) => ClaimPage()));
+                  },
+                  child: Image.asset('images/claimapp.png'),
+                ),
+              ),
+
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    // Navigator.push(
+                    //     context, MaterialPageRoute(builder: (context) => PaySlipPage()));
+
+                  },
+                  child: Image.asset('images/payslip.png'),
+                ),
+              ),
+
+
+
+            ],
+          ),
+
+          SizedBox(height: getSizeBoxHeight(context),),
+
+          Row(
+            children: [
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    // Navigator.push(
+                    //     context, MaterialPageRoute(builder: (context) => AskPage()));
+                  },
+                  child: Image.asset('images/inqu.png'),
+                ),
+              ),
+
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    // Navigator.push(
+                    //     context, MaterialPageRoute(builder: (context) => Settings()));
+                  },
+                  child: Image.asset('images/set.png'),
+                ),
+              ),
+
+
+
+            ],
+          ),
+
         ],
       )
 
