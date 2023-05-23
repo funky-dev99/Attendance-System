@@ -3,6 +3,7 @@ import 'package:attendance_system/pages/qr_code.dart';
 import 'package:flutter/material.dart';
 
 import '../Methods/methods.dart';
+import 'claim_page.dart';
 import 'login.dart';
 
 class HomePage extends StatelessWidget {
@@ -64,8 +65,8 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: MaterialButton(
                   onPressed: (){
-                    // Navigator.push(
-                    //     context, MaterialPageRoute(builder: (context) => ClaimPage()));
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => ClaimApp()));
                   },
                   child: Image.asset('images/claimapp.png'),
                 ),
