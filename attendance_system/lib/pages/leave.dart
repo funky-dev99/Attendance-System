@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 
-
 class ListItem {
   final String title;
   final String subTitle;
