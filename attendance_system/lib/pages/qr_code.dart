@@ -70,7 +70,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           icon: Image.asset("images/back.png"),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const HomePage()));
+                context, MaterialPageRoute(builder: (context) =>  HomePage()));
           },
         ),
       ),
