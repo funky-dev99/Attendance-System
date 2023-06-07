@@ -16,15 +16,45 @@ class QrPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('QR Scan Page')),
-      body: Center(
-        child: ElevatedButton(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          "QR Scan Page",
+          style: TextStyle(color: Colors.black, fontSize: 22),
+        ),
+        leading: IconButton(
+          icon: Image.asset("images/back.png"),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => QRViewExample(),
-            ));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) =>  HomePage()));
           },
-          child: const Text('Scan Your QR'),
+        ),
+        elevation: 0.0,
+      ),
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black, // Replace with your desired color
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => QRViewExample(),
+              ));
+            },
+            child: const Text(
+              'Scan Your QR',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+          ),
         ),
       ),
     );
@@ -60,11 +90,8 @@ class _QRViewExampleState extends State<QRViewExample> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
-          'Scan Code',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold
-          ),
+          "QR Scan Page",
+          style: TextStyle(color: Colors.black, fontSize: 22),
         ),
         leading: IconButton(
           icon: Image.asset("images/back.png"),
@@ -73,6 +100,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                 context, MaterialPageRoute(builder: (context) =>  HomePage()));
           },
         ),
+        elevation: 0.0,
       ),
       body: Column(
         children: <Widget>[
@@ -100,18 +128,28 @@ class _QRViewExampleState extends State<QRViewExample> {
                     children: <Widget>[
                       Container(
                         margin: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black, // Replace with your desired color
+                        ),
                         child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.toggleFlash();
-                              setState(() {});
+                          onPressed: () async {
+                            await controller?.toggleFlash();
+                            setState(() {});
+                          },
+                          child: FutureBuilder(
+                            future: controller?.getFlashStatus(),
+                            builder: (context, snapshot) {
+                              return Text('Flash: ${snapshot.data}');
                             },
-                            child: FutureBuilder(
-                              future: controller?.getFlashStatus(),
-                              builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
-                              },
-                            )),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                          ),
+                        ),
                       ),
+
 
                     ],
                   ),
@@ -121,24 +159,45 @@ class _QRViewExampleState extends State<QRViewExample> {
                     children: <Widget>[
                       Container(
                         margin: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black, // Replace with your desired color
+                        ),
                         child: ElevatedButton(
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
-                          child: const Text('Pause',
-                              style: TextStyle(fontSize: 15)),
+                          child: const Text(
+                            'Pause',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                          ),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black, // Replace with your desired color
+                        ),
                         child: ElevatedButton(
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },
-                          child: const Text('Resume',
-                              style: TextStyle(fontSize: 15)),
+                          child: const Text(
+                            'Resume',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            elevation: 0,
+                          ),
                         ),
-                      )
+                      ),
+
                     ],
                   ),
                 ],
