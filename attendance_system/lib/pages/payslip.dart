@@ -181,7 +181,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
@@ -202,7 +202,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
               ],
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
@@ -248,7 +248,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
               ],
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
@@ -271,7 +271,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
 
 
             Container(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: TextFormField(
                 controller: desController,
                 keyboardType: TextInputType.multiline,
@@ -302,8 +302,8 @@ class _PaySlipUpState extends State<PaySlipUp> {
               ],
             ),
 
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 20,
             ),
 
             ElevatedButton.icon(
@@ -336,11 +336,12 @@ class _PaySlipUpState extends State<PaySlipUp> {
             ),
 
 
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 80,
             ),
 
             ElevatedButton(
+
               onPressed: () {
                 print('Employee Type: $selectedEmployeeType');
                 print('Note: $desController');
