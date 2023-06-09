@@ -82,6 +82,9 @@ class LeavePage extends StatelessWidget {
                     // Perform approve action
                     print('Approve button pressed');
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                  ),
                   child: Text('Approve'),
                 ),
                 SizedBox(width: 8.0),
