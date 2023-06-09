@@ -102,6 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
+                SizedBox(height: 10),
+
                 if (incorrectPassword)
                   const Text(
                     'Incorrect password. Please try again.',
