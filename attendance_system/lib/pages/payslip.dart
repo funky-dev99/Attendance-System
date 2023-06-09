@@ -439,11 +439,6 @@ class _PaySlipUpState extends State<PaySlipUp> {
                 ),
               ),
             ),
-            // if (uploadedFilePath.isNotEmpty) // Display the uploaded file path if available
-            //   Padding(
-            //     padding: const EdgeInsets.all(20.0),
-            //     child: Text('Uploaded File: $uploadedFilePath'),
-            //   ),
           ],
         ),
       ),
