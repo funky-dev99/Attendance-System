@@ -7,11 +7,20 @@ class PaySlipUp extends StatefulWidget {
   const PaySlipUp({Key key}) : super(key: key);
 
   @override
-  _PaySlipUpState createState() => _PaySlipUpState();
+  State<PaySlipUp> createState() => _PaySlipUpState();
 }
 
 class _PaySlipUpState extends State<PaySlipUp> {
-  int selectedEmployee;
+  String selectedEmployeeType = '';
+  final desController = TextEditingController();
+
+  final List<String> _employeeTypes = [
+    'Employee 1',
+    'Employee 2',
+    'Employee 3',
+    'Employee 4',
+    'Employee 5',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,57 +34,26 @@ class _PaySlipUpState extends State<PaySlipUp> {
         leading: IconButton(
           icon: Image.asset("images/back.png"),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) =>  HomePage()));
           },
         ),
         elevation: 0.0,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            DropdownButton<int>(
-              hint: const Text('Select Employee'),
-              value: selectedEmployee,
-              items: List.generate(
-                10,
-                (index) => DropdownMenuItem<int>(
-                  value: index,
-                  child: Text('Employee ${index + 1}'),
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  selectedEmployee = value;
-                });
-              },
+            const SizedBox(
+              height: 10,
             ),
-            SizedBox(height: 20),
-            selectedEmployee != null
-                ? Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      'Selected Employee: Employee ${selectedEmployee + 1}',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  )
-                : Container(),
-            const SizedBox(height: 20,),
 
             Row(
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 0.0),
-                  margin: const EdgeInsets.only(left: 20.0,top: 5.0),
+                  margin: const EdgeInsets.only(left: 10.0),
                   child: const Text(
-                    'Upload Document :',
+                    'Select Employee :',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -85,7 +63,108 @@ class _PaySlipUpState extends State<PaySlipUp> {
               ],
             ),
 
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 10,
+            ),
+            
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  width: 320,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[350], // Change the color to your desired color
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(
+                            0.5), // Change the shadow color if needed
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(
+                            0, 3), // Adjust the offset for the drop shadow
+                      ),
+                    ],
+                  ),
+                  child: DropdownButton<String>(
+                    value:
+                    selectedEmployeeType.isNotEmpty ? selectedEmployeeType : null,
+                    hint: const Text('Employee'),
+                    onChanged: ( value) {
+                      setState(() {
+                        selectedEmployeeType = value ?? '';
+                      });
+                    },
+                    items: _employeeTypes.map((String employeeType) {
+                      return DropdownMenuItem<String>(
+                        value: employeeType,
+                        child: Text(employeeType),
+                      );
+                    }).toList(),
+
+
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+            //Description Text
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 0.0),
+                  margin: const EdgeInsets.only(left: 10.0),
+                  child: const Text(
+                    'Any Note :',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                controller: desController,
+                keyboardType: TextInputType.multiline,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  hintText: 'Type here..',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 0.0),
+                  margin: const EdgeInsets.only(left: 10.0,top: 5.0),
+                  child: const Text(
+                    'Upload Payment Slip :',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
 
             ElevatedButton.icon(
               onPressed: () async {
@@ -115,6 +194,28 @@ class _PaySlipUpState extends State<PaySlipUp> {
                 ), // Background color
               ),
             ),
+
+
+            const SizedBox(
+              height: 80,
+            ),
+
+            ElevatedButton(
+
+              onPressed: () {
+                print('Employee Type: $selectedEmployeeType');
+                print('Note: $desController');
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.black, // Sets the text color
+                minimumSize: const Size(150, 50), // Sets the minimum size of the button
+              ),
+
+              child: const
+              Text('Request',
+
+                style: TextStyle(fontSize: 18,),),
+            )
 
 
 
