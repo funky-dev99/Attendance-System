@@ -1,5 +1,3 @@
-
-
 import 'package:attendance_system/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -42,10 +40,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 40,
                 ),
                 //Logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
+                Image.asset('images/pin.png'),
+
                 const SizedBox(
                   height: 50,
                 ),
@@ -68,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Pin Code',
-                      errorText: passwordValidate ? 'Value Can\'t Be Empty' : null,
+                      errorText:
+                          passwordValidate ? 'Value Can\'t Be Empty' : null,
                     ),
                   ),
                 ),
@@ -80,9 +77,12 @@ class _LoginPageState extends State<LoginPage> {
                 MaterialButton(
                   onPressed: () {
                     setState(() {
-                      passwordController.text.isEmpty ? passwordValidate = true : passwordValidate = false;
+                      passwordController.text.isEmpty
+                          ? passwordValidate = true
+                          : passwordValidate = false;
                     });
-                    if (!passwordValidate && passwordController.text == '1234') {
+                    if (!passwordValidate &&
+                        passwordController.text == '1234') {
                       _navigateToHome(); // Navigate to the home page
                     } else {
                       setState(() {
