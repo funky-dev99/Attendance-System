@@ -34,8 +34,8 @@ class _PaySlipUpState extends State<PaySlipUp> {
         leading: IconButton(
           icon: Image.asset("images/back.png"),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) =>  HomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
         elevation: 0.0,
@@ -66,7 +66,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
             const SizedBox(
               height: 10,
             ),
-            
+
             Row(
               children: [
                 Container(
@@ -74,7 +74,8 @@ class _PaySlipUpState extends State<PaySlipUp> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   width: 320,
                   decoration: BoxDecoration(
-                    color: Colors.grey[350], // Change the color to your desired color
+                    color: Colors
+                        .grey[350], // Change the color to your desired color
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(
@@ -87,10 +88,11 @@ class _PaySlipUpState extends State<PaySlipUp> {
                     ],
                   ),
                   child: DropdownButton<String>(
-                    value:
-                    selectedEmployeeType.isNotEmpty ? selectedEmployeeType : null,
+                    value: selectedEmployeeType.isNotEmpty
+                        ? selectedEmployeeType
+                        : null,
                     hint: const Text('Employee'),
-                    onChanged: ( value) {
+                    onChanged: (value) {
                       setState(() {
                         selectedEmployeeType = value ?? '';
                       });
@@ -101,8 +103,6 @@ class _PaySlipUpState extends State<PaySlipUp> {
                         child: Text(employeeType),
                       );
                     }).toList(),
-
-
                   ),
                 ),
               ],
@@ -129,7 +129,6 @@ class _PaySlipUpState extends State<PaySlipUp> {
               ],
             ),
 
-
             Container(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
@@ -150,7 +149,7 @@ class _PaySlipUpState extends State<PaySlipUp> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 0.0),
-                  margin: const EdgeInsets.only(left: 10.0,top: 5.0),
+                  margin: const EdgeInsets.only(left: 10.0, top: 5.0),
                   child: const Text(
                     'Upload Payment Slip :',
                     style: TextStyle(
@@ -188,38 +187,36 @@ class _PaySlipUpState extends State<PaySlipUp> {
                 style: TextStyle(color: Colors.black),
               ),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16.0), backgroundColor: Colors.grey[350],
+                padding: const EdgeInsets.all(16.0),
+                backgroundColor: Colors.grey[350],
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ), // Background color
               ),
             ),
 
-
             const SizedBox(
               height: 80,
             ),
 
             ElevatedButton(
-
               onPressed: () {
                 print('Employee Type: $selectedEmployeeType');
                 print('Note: $desController');
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black, // Sets the text color
-                minimumSize: const Size(150, 50), // Sets the minimum size of the button
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black, // Sets the text color
+                minimumSize:
+                    const Size(150, 50), // Sets the minimum size of the button
               ),
-
-              child: const
-              Text('Request',
-
-                style: TextStyle(fontSize: 18,),),
+              child: const Text(
+                'Request',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
             )
-
-
-
-
           ],
         ),
       ),
