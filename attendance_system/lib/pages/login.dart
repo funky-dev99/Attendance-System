@@ -48,11 +48,12 @@ class _LoginPageState extends State<LoginPage> {
 
                 //Welcome Back Text
                 const Text(
-                  'Welcome back, You\'ve been missed!!',
-                  style: TextStyle(color: Colors.black87, fontSize: 18),
+                  'Welcome!!',
+                  style: TextStyle(color: Colors.black87, fontSize: 25,
+                  fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 30,
                 ),
 
                 Padding(
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
-                  height: 25,
+                  height: 50,
                 ),
 
                 MaterialButton(
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50.0,
                   color: Colors.black,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: const Text(
                     'Get Start',
