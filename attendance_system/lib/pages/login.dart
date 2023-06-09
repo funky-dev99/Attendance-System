@@ -1,14 +1,32 @@
+
+
 import 'package:attendance_system/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
+class LoginPage extends StatefulWidget {
+  LoginPage({Key key}) : super(key: key);
 
-class LoginPage extends StatelessWidget {
-   LoginPage({Key key}) : super(key: key);
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
-  final usernameController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
+  bool passwordValidate = false;
+  bool incorrectPassword = false;
 
-  void userSignIn() {}
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void _navigateToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,26 +59,17 @@ class LoginPage extends StatelessWidget {
                   height: 25,
                 ),
 
-                //Username Text field
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
-
-                    controller: usernameController,
-                    decoration:  InputDecoration(
-
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide(color: Colors.blueGrey,),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide(color: Colors.black45),
-                        ),
-                        fillColor: Colors.white30,
-                        filled: true,
-                        hintText: '   User Name',
-                        helperStyle: TextStyle(color: Colors.black45)),
+                    textInputAction: TextInputAction.done,
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Pin Code',
+                      errorText: passwordValidate ? 'Value Can\'t Be Empty' : null,
+                    ),
                   ),
                 ),
 
@@ -68,102 +77,35 @@ class LoginPage extends StatelessWidget {
                   height: 25,
                 ),
 
-                //Password Text field
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration:  InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide(color: Colors.blueGrey),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide(color: Colors.black45),
-                        ),
-                        fillColor: Colors.white,
-                        filled: true,
-                        hintText: '  Password',
-                        helperStyle: TextStyle(color: Colors.black45)),
+                MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      passwordController.text.isEmpty ? passwordValidate = true : passwordValidate = false;
+                    });
+                    if (!passwordValidate && passwordController.text == '1234') {
+                      _navigateToHome(); // Navigate to the home page
+                    } else {
+                      setState(() {
+                        incorrectPassword = true;
+                      });
+                    }
+                  },
+                  minWidth: 150.0,
+                  height: 50.0,
+                  color: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Text(
+                    'Get Start',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
-
-                //Forgot?
-                SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Fogot Password?',
-                        style: TextStyle(color: Colors.black87, fontSize: 16),
-                      ),
-                    ],
+                if (incorrectPassword)
+                  const Text(
+                    'Incorrect password. Please try again.',
+                    style: TextStyle(color: Colors.red),
                   ),
-                ),
-
-                //Sign in Button
-                SizedBox(
-                  height: 15,
-                ),
-
-
-
-                GestureDetector(
-                  onTap: (){Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => HomePage()));},
-                  child: Container(
-                    padding: EdgeInsets.all(25),
-                    margin: EdgeInsets.symmetric(horizontal: 25),
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-
-                //or continue
-
-                Divider(),
-
-                //Google+Apple buttons
-
-                Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    margin: EdgeInsets.only(left: 30, bottom: 30, right: 30),
-                    child: Image.asset('images/gs.png')),
-
-                //Register Now
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Not a member?',
-                      style: TextStyle(color: Colors.black87, fontSize: 16),
-                    ),
-                    Text(
-                      'Register Now!!',
-                      style: TextStyle(color: Colors.blue, fontSize: 16),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
