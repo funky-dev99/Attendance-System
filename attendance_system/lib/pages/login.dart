@@ -2,7 +2,7 @@ import 'package:attendance_system/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Pin Code',
                       errorText:
                           passwordValidate ? 'Value Can\'t Be Empty' : null,
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Get Start',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
