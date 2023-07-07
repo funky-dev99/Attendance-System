@@ -12,8 +12,6 @@ class ListItem {
   ListItem({ this.title,  this.subTitle,  this.description});
 }
 
-
-
 class LeavePage extends StatelessWidget {
   final List<ListItem> items = [
     ListItem(
